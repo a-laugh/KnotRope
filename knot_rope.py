@@ -1,13 +1,10 @@
-#!/usr/bin/env python3
 # coding: utf-8
 
 import os
-import sys
-import logging
 
 
 def is_chinese(ch):
-    if u'\ue400' <= ch <= u'\u9fa5':
+    if u'\u4e00' <= ch <= u'\u9fa5':
         return True
     else:
         return False
@@ -38,13 +35,3 @@ class KnotRope(object):
                 self.analyze_file(path)
 
         return self._dict
-
-
-if __name__ == '__main__':
-    if len(sys.argv) != 2:
-        logging.error("usage: ./knot_rope.py /path/to/dir")
-
-    rope = KnotRope(sys.argv[1])
-    info = rope.run()
-    print(len(info))
-    print(sorted(info.items(), key=lambda x: x[1], reverse=True))
